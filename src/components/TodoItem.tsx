@@ -3,6 +3,7 @@ import React, { useContext, useState } from 'react';
 
 import type { Todo as TodoType } from '../App';
 import { TodoContext } from '../context/TodoContext';
+import PropTypes from 'prop-types';
 
 interface TodoProps {
   todo: TodoType;
@@ -121,4 +122,12 @@ export const Todo: React.FC<TodoProps> = ({ todo }) => {
       )}
     </div>
   );
+};
+
+Todo.propTypes = {
+  todo: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    completed: PropTypes.bool.isRequired,
+  }).isRequired,
 };

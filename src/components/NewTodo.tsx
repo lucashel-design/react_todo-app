@@ -3,6 +3,8 @@ import type React from 'react';
 
 import { TodoContext } from '../context/TodoContext';
 
+let nextTodoId = 1;
+
 export const NewTodo: React.FC = () => {
   const [title, setTitle] = useState('');
   const context = useContext(TodoContext);
@@ -27,10 +29,16 @@ export const NewTodo: React.FC = () => {
       return;
     }
 
+    const highestId = Math.max(0, ...state.todos.map(todo => todo.id));
+
+    if (nextTodoId <= highestId) {
+      nextTodoId = highestId + 1;
+    }
+
     dispatch({
       type: 'add',
       payload: {
-        id: +new Date(),
+        id: nextTodoId++,
         title: newTitle,
         completed: false,
       },
