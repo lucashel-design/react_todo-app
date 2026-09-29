@@ -2,7 +2,6 @@ import React from 'react';
 
 import type { Todo as TodoType } from '../App';
 import { Todo } from './TodoItem';
-import PropTypes from 'prop-types';
 
 interface TodoListProps {
   todos: TodoType[];
@@ -16,14 +15,4 @@ export const TodoList: React.FC<TodoListProps> = ({ todos }) => {
       ))}
     </section>
   );
-};
-
-TodoList.propTypes = {
-  todos: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      title: PropTypes.string.isRequired,
-      completed: PropTypes.bool.isRequired,
-    }).isRequired,
-  ).isRequired,
 };
